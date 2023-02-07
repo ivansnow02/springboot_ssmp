@@ -1,8 +1,11 @@
 package com.is.dao;
 
+import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;
+import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.is.domain.Book;
+import org.apache.logging.log4j.util.Strings;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -19,9 +22,9 @@ public class BookDaoTestCase {
     @Test
     void testSave() {
         Book book = new Book();
-        book.setName("测试数据");
-        book.setType("测试数据");
-        book.setDescription("测试数据");
+        book.setName("测试数据1");
+        book.setType("测试数据1");
+        book.setDescription("测试数据1");
         bookDao.insert(book);
     }
     @Test
@@ -53,7 +56,15 @@ public class BookDaoTestCase {
     }
     @Test
     void testGetBy() {
-
+        QueryWrapper<Book> bookQueryWrapper = new QueryWrapper<Book>();
+        bookQueryWrapper.like("name","测试数据");
+        bookDao.selectList(bookQueryWrapper);
     }
-
+    @Test
+    void testGetBy2() {
+        String name = "测试数据1";
+        LambdaQueryWrapper<Book> bookLambdaQueryWrapper = new LambdaQueryWrapper<Book>();
+        bookLambdaQueryWrapper.like(Strings.isNotEmpty(name),Book::getName,name);
+        bookDao.selectList(bookLambdaQueryWrapper);
+    }
 }
