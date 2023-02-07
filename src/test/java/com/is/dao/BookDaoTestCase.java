@@ -1,5 +1,7 @@
 package com.is.dao;
 
+import com.baomidou.mybatisplus.core.metadata.IPage;
+import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.is.domain.Book;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -33,17 +35,21 @@ public class BookDaoTestCase {
     }
     @Test
     void testDelete() {
-
         bookDao.deleteById(3);
     }
     @Test
     void testGetAll() {
-
         bookDao.selectList(null);
     }
     @Test
     void testGetPage() {
-
+        IPage<Book> page = new Page<Book>(1,5);
+        bookDao.selectPage(page,null);
+        System.out.println(page.getCurrent());
+        System.out.println(page.getSize());
+        System.out.println(page.getTotal());
+        System.out.println(page.getPages());//最大页码值
+        System.out.println(page.getRecords());
     }
     @Test
     void testGetBy() {
