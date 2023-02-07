@@ -1,2 +1,18 @@
 server:
   port: 80
+
+
+spring:
+  datasource:
+    druid:
+      driver-class-name: com.mysql.cj.jdbc.Driver
+      url: jdbc:mysql://localhost:3306/mybatis?serverTimezone=UTC
+      username: root
+      password: 254940Sr
+
+
+mybatis-plus:
+  global-config:
+    db-config:
+      table-prefix: tb1_
+      id-type: auto
