@@ -4,10 +4,10 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 @SpringBootApplication
-public class SpringbootSsmpApplication {
+public class SSMPApplication {
 
     public static void main(String[] args) {
-        SpringApplication.run(SpringbootSsmpApplication.class, args);
+        SpringApplication.run(SSMPApplication.class, args);
     }
 
 }
